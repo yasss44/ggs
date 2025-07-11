@@ -1,21 +1,22 @@
-name: RDP
+name: TOOLBOXLAP- LiteManager
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
+    name: Start Building...
+    runs-on: windows-2019
+    timeout-minutes: 9999
+    
     steps:
-      - name: Download ngrok
+      - name: Downloading & Installing Essentials
         run: |
-          Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-          Expand-Archive ngrok.zip
-          ./ngrok.exe authtoken 2F05KQMnrsNWu0G8FdbpNhASRy3_298fbcfUWg5BNecRGAgwq
+          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/tollboxlap09/tollboxlap09/refs/heads/main/Downloads.bat" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
 
-      - name: Enable RDP
-        run: |
-          net user kamel123 MyStrong123 /add
-          net localgroup administrators kamel123 /add
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
-          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-          ./ngrok.exe tcp 3389
+      - name: TOOLBOXLAP
+        run: cmd /c show.bat
+
+      - name: like and subscribe 
+        run: cmd /c loop.bat
